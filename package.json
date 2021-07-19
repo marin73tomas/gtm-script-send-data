@@ -1,0 +1,19 @@
+{
+  "name": "gtm-script-send-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marin73tomas/gtm-script-send-data.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marin73tomas/gtm-script-send-data/issues"
+  },
+  "homepage": "https://github.com/marin73tomas/gtm-script-send-data#readme"
+}
