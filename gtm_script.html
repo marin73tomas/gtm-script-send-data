@@ -1,21 +1,82 @@
-
 <!-- <script type="text/javascript" src="https://myhost.com/external.js"></script> -->
 <script type="text/javascript">
-    window.hostInfo = [];
-    function getIP(json) {
-        window.hostInfo.push({"event":"ipEvent","ipAddress" : json.ip});	
-    }
+  window.hostInfo;
+  function getIP(json) {
+    window.hostInfo = { event: "ipEvent", ipAddress: json.ip };
+  }
 </script>
 
-<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+<script
+  type="application/javascript"
+  src="https://api.ipify.org?format=jsonp&callback=getIP"
+></script>
 <script type="text/javascript">
-async function recordImpression(element){
-    if(element){
+  cron;
+  timerHour = 0;
+  timerMinute = 0;
+  timerSecond = 0;
+  timerMillisecond = 0;
+  window.analyticsData;
 
+  function timer() {
+    if ((timerMillisecond += 10) == 1000) {
+      timerMillisecond = 0;
+      timerSecond++;
     }
-}
-window.addEventListener('DOMContentLoaded', (event) => {
-    const elementSelector = ".job_details"
+    if (timerSecond == 60) {
+      timerSecond = 0;
+      timerMinute++;
+    }
+    if (timerMinute == 60) {
+      timerMinute = 0;
+      timerHour++;
+    }
+  }
+
+  function startTimer() {
+    pause();
+    cron = setInterval(() => {
+      timer();
+    }, 10);
+  }
+
+  function pauseTimer() {
+    clearInterval(cron);
+  }
+  function printTime(time, letter) {
+    return time ? `${time}${letter}` : "";
+  }
+  function recordImpression(element) {
+    if (element) {
+      const remoteIP = window.hostInfo?.ipAddress || "unknown";
+      const referrer = document.referrer || window.location.href;
+      const currentURI = window.location.href;
+      window.analyticsData = {
+        remoteIP,
+        referrer,
+        currentURI,
+      };
+    }
+    alert("Element supplied to function recordImpression doesn't exist");
+  }
+  document.addEventListener("visibilitychange", function logData() {
+    if (document.visibilityState === "hidden") {
+      if (cron) pauseTimer();
+      navigator.sendBeacon("/log", {
+        elapsedTime: cron
+          ? `${printTime(timerHour, "h")} 
+             ${printTime(timerMinute, "min")} 
+             ${printTime(timerSecond, "s")} 
+             ${printTime(timerMillisecond, "ms")}`
+          : "timer didn't start",
+        ...window.analyticsData,
+      });
+    }
+  });
+
+  window.addEventListener("DOMContentLoaded", (event) => {
+    startTimer();
+    const elementSelector = ".job_details";
     recordImpression(document.getElementById(elementSelector));
-});
+  });
 </script>
