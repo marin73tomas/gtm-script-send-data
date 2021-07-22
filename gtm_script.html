@@ -16,7 +16,9 @@
   timerMinute = 0;
   timerSecond = 0;
   timerMillisecond = 0;
-  window.analyticsData;
+  window.analyticsData = {
+
+  }
 
   function timer() {
     if ((timerMillisecond += 10) == 1000) {
@@ -47,17 +49,16 @@
     return time ? `${time}${letter}` : "";
   }
   function recordImpression(element) {
-    if (element) {
+
       const remoteIP = window.hostInfo?.ipAddress || "unknown";
       const referrer = document.referrer || window.location.href;
       const currentURI = window.location.href;
       window.analyticsData = {
+        element,
         remoteIP,
         referrer,
         currentURI,
       };
-    }
-    alert("Element supplied to function recordImpression doesn't exist");
   }
   document.addEventListener("visibilitychange", function logData() {
     if (document.visibilityState === "hidden") {
@@ -74,7 +75,7 @@
     }
   });
 
-  window.addEventListener("DOMContentLoaded", (event) => {
+  window.addEventListener("DOMContentLoaded", async (event) => {
     startTimer();
     const elementSelector = ".job_details";
     recordImpression(document.getElementById(elementSelector));
