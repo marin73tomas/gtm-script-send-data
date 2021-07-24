@@ -1,0 +1,73 @@
+{
+    "TableName": "Analytics",
+    "KeySchema": [
+        {
+            "AttributeName": "AnalyticId",
+            "KeyType": "HASH"
+        }
+    ],
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "AnalyticId",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "PageType",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "StudioOwner",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "PageId",
+            "AttributeType": "S"
+        }
+    ],
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "PageTypeAndStudioOwner-index",
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "WriteCapacityUnits": 1,
+                "ReadCapacityUnits": 1
+            },
+            "KeySchema": [
+                {
+                    "KeyType": "HASH",
+                    "AttributeName": "PageType"
+                },
+                {
+                    "KeyType": "RANGE",
+                    "AttributeName": "StudioOwner"
+                }
+            ]
+        },
+        {
+            "IndexName": "PageTypeAndPageId-index",
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "WriteCapacityUnits": 1,
+                "ReadCapacityUnits": 1
+            },
+            "KeySchema": [
+                {
+                    "KeyType": "HASH",
+                    "AttributeName": "PageType"
+                },
+                {
+                    "KeyType": "RANGE",
+                    "AttributeName": "PageId"
+                }
+            ]
+        }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+    }
+}

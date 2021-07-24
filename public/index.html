@@ -8,130 +8,15 @@
   </head>
   <body>
     <article class="job_details">
-      <header class="page_title">
-        <h1 id="jobtitle">Intermediate Unity Programmer</h1>
-      </header>
-
-      <div class="desc text_content fade_in is-fade-animate">
-        <p>
-          iLLOGIKA is looking for Unity programmers to participate in many
-          mobile projects and collaborate with a lot of prestigious studios, if
-          you want to develop various skills and join a family environment with
-          passionate peoples, we invite you to apply!
-        </p>
-      </div>
-
       <div class="actions">
-        <a
-          href="/en/careers/"
-          class="btn_arrow_label back fade_in is-fade-animate"
-          ><span class="btn_arrow btn_back"></span><span>Jobs</span></a
-        >
-        <a
-          href="#apply_form"
-          class="btn_arrow_label scroll_to apply fade_in is-fade-animate"
-          ><span class="label">Apply</span
-          ><span class="btn_arrow animate"></span
-        ></a>
+        <a>Jobs</a>
       </div>
-
-      <div class="details_wrapper">
-        <div class="group responsibilities fade_in is-fade-animate">
-          <h2>Description</h2>
-          <div class="text_content">
-            <ul>
-              <li>Develop games and multimedia projects with Unity;</li>
-              <li>
-                Produce a technical analysis in collaboration with the project’s
-                architects;
-              </li>
-              <li>Offer technical solutions to answer the client’s needs;</li>
-              <li>Assess the amount of work to be completed;</li>
-              <li>
-                Participate in code reviews and optimize game code when needed.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="group advantages fade_in is-fade-animate">
-          <h2>Benefits</h2>
-          <div class="text_content">
-            <ul>
-              <li>
-                Flexible schedule, possibility of reduced hours, strict policy
-                limiting overtime;
-              </li>
-              <li>
-                Holidays for the annual closure in December, holiday&nbsp;banks
-                (paid, sick, mobile, unpaid);
-              </li>
-              <li>Training policy for the entire team;</li>
-              <li>Possibility to work on personal projects;</li>
-              <li>Hack week and game jam during working hours;</li>
-              <li>
-                Group Insurance, Employee Assistance Program, Online Health
-                Platform;
-              </li>
-              <li>Group RRSPs and TFSAs;</li>
-              <li>Coffee, tea and beer Fridays;</li>
-              <li>
-                Our culture: Sharing, Mutual aid, Autonomy, Transparency,
-                Improvement.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="group requirements fade_in is-faded-out">
-          <h2>Experience for the position</h2>
-          <div class="text_content">
-            <ul>
-              <li>
-                Three (3) to five (5) years of experience in game programming or
-                multimedia projects;
-              </li>
-              <li>Great knowledge of the C# and C++ languages;</li>
-              <li>Autonomous and proactive when offering solutions;</li>
-              <li>
-                Offering ergonomic recommendations and being involved in the
-                creative process;
-              </li>
-              <li>Experience in mobile development;</li>
-              <li>
-                Experience in the development of virtual or augmented reality
-                projects (is a plus);
-              </li>
-              <li>Fluent English and French (spoken and written).</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <aside class="apply fade_in is-faded-out" id="apply_form">
-        <h1>Submit an application</h1>
-
-        <a
-          href="https://illogika.breezy.hr/p/2fee5374ee72-programmeur-euse-unity-intermediaire-intermediate-unity-programmer/apply"
-          class="btn_arrow_label apply fade_in applyBreezy is-faded-out"
-          ><span class="label">Apply (via Breezy HR)</span
-          ><span class="btn_arrow animate"></span
-        ></a>
-
-        <a
-          href="https://app.breezy.hr/api/apply/linkedin?position_id=2fee5374ee72"
-          class="btn_arrow_label apply fade_in is-faded-out"
-          ><span class="label">Apply (via Linked)</span
-          ><span class="btn_arrow animate"></span
-        ></a>
-      </aside>
     </article>
   </body>
 
   <footer>
     <script type="text/javascript" src="/external.js"></script>
     <script type="text/javascript">
-      window.hostInfo;
       function getIP(json) {
         window.hostInfo = { event: "ipEvent", ipAddress: json.ip };
       }
@@ -142,47 +27,12 @@
       src="https://api.ipify.org?format=jsonp&callback=getIP"
     ></script>
     <script type="text/javascript">
-      window.cron;
-      window.timerHour = 0;
-      window.timerMinute = 0;
-      window.timerSecond = 0;
-      window.timerMillisecond = 0;
-      window.analyticsData = {};
-
-      function timer() {
-        if ((timerMillisecond += 10) == 1000) {
-          timerMillisecond = 0;
-          timerSecond++;
-        }
-        if (timerSecond == 60) {
-          timerSecond = 0;
-          timerMinute++;
-        }
-        if (timerMinute == 60) {
-          timerMinute = 0;
-          timerHour++;
-        }
-      }
-
-      function startTimer() {
-        pauseTimer();
-        cron = setInterval(() => {
-          timer();
-        }, 10);
-      }
-
-      function pauseTimer() {
-        clearInterval(window.cron);
-      }
-      function printTime(time, letter) {
-        return time ? `${time}${letter}` : "";
-      }
       function recordImpression(element) {
-        const remoteIP = window.hostInfo?.ipAddress || "unknown";
+        const remoteIP = window.hostInfo?.ipAddress;
         const referrer = document.referrer || window.location.href;
         const currentURI = window.location.href;
         element = element?.innerHTML;
-
+        // fill analytics data
         window.analyticsData = {
           element,
           remoteIP,
@@ -192,23 +42,15 @@
       }
       document.addEventListener("visibilitychange", function logData() {
         if (document.visibilityState === "hidden") {
-          if (window.cron) pauseTimer();
-          const elapsedTime = window.cron
-            ? `${printTime(window.timerHour, "h")} ${printTime(
-                window.timerMinute,
-                "min"
-              )} ${printTime(window.timerSecond, "s")} ${printTime(
-                window.timerMillisecond,
-                "ms"
-              )}`
-            : "timer didn't start";
-          sendAnalyticsData(elapsedTime.trim(), window.analyticsData);
+          const elapsedTime = Date.now() - window.startTime + "ms";
+          //sendAnalyticsData function in external.js, send data to the server
+          sendAnalyticsData(elapsedTime, window.analyticsData);
         }
       });
 
       window.addEventListener("DOMContentLoaded", async (event) => {
-        startTimer();
-        recordImpression(document.querySelector(".job_details"));
+        window.startTime = Date.now();
+        recordImpression(document.querySelector(".job_details .actions > a"));
       });
     </script>
   </footer>

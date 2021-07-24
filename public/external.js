@@ -1,4 +1,4 @@
-function sendAnalyticsData(elapsedTime, analyticsData, url="/log") {
+function sendAnalyticsData(elapsedTime, analyticsData, url = "/log") {
   const data = {
     elapsedTime,
     ...analyticsData,

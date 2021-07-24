@@ -1,25 +1,26 @@
 {
-  "name": "gtm-script-send-data",
-  "version": "1.0.0",
-  "description": "",
-  "main": "backend.js",
+  "name": "gamesmith-analytics-backend",
+  "version": "0.0.1",
+  "description": "Analytics backend service for Gamesmith analytics client.",
+  "main": "api.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend.js"
+    "createAndDeploy": "claudia create --region us-west-2 --api-module api --policies policy",
+    "updateAndDeploy": "claudia update",
+    "createDynamoDB": "sh ./scripts/aws-create-dynamodb.sh",
+    "destroy": "claudia destroy",
+    "start": "node ./index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marin73tomas/gtm-script-send-data.git"
-  },
-  "author": "",
+  "author": "Jeremy Bursky <jzbgdev@gmail.com> (https://github.com/jremi)",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/marin73tomas/gtm-script-send-data/issues"
+  "devDependencies": {
+    "claudia": "^5.12.0"
   },
-  "homepage": "https://github.com/marin73tomas/gtm-script-send-data#readme",
   "dependencies": {
+    "aws-sdk": "^2.614.0",
+    "claudia-api-builder": "^4.1.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nodemon": "^2.0.12"
+    "referral-parser": "0.0.9"
   }
 }
