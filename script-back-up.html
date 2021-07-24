@@ -1,0 +1,62 @@
+<script type="text/javascript" src="/external.js"></script>
+<script type="text/javascript">
+  var hostInfo;
+  var analyticData;
+  var startTime;
+  function getIP(json) {
+    hostInfo = { event: "ipEvent", ipAddress: json.ip };
+  }
+</script>
+
+<script
+  type="application/javascript"
+  src="https://api.ipify.org?format=jsonp&callback=getIP"
+></script>
+
+<script type="text/javascript">
+  function recordImpression(element) {
+    var remoteIP = hostInfo;
+    if (remoteIP) remoteIP = window.hostInfo.ipAddress;
+    var referrer = document.referrer;
+    if (!referrer) referrer = window.location.href;
+    var currentURI = window.location.href;
+    element = element;
+    if (element) element.innerHTML;
+
+    // fill analytics data
+    analyticData = {
+      element: element,
+      remoteIP: remoteIP,
+      referrer: referrer,
+      currentURI: currentURI,
+    };
+    console.log(analyticData);
+  }
+  document.addEventListener("visibilitychange", function logData() {
+    if (document.visibilityState === "hidden") {
+      var thousands = new Number("1000");
+      if (!startTime) startTime = Date.now();
+      var elapsedTime = (Date.now() - startTime) / thousands + "s";
+      //sendAnalyticsData function in external.js, send data to the server
+
+      sendAnalyticsData(elapsedTime, analyticData, "/analytic");
+    }
+  });
+  function ready(callback) {
+    // in case the document is already rendered
+    if (document.readyState != "loading") callback();
+    // modern browsers
+    else if (document.addEventListener)
+      document.addEventListener("DOMContentLoaded", callback);
+    // IE <= 8
+    else
+      document.attachEvent("onreadystatechange", function () {
+        if (document.readyState == "complete") callback();
+      });
+  }
+
+  ready(function () {
+    startTime = Date.now();
+    recordImpression(document.querySelector(".job_details .actions a"));
+  });
+</script>

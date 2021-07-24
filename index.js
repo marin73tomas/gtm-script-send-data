@@ -1,9 +1,6 @@
 var express = require("express");
 var app = express();
-const {
-  DynamoDBClient,
-  ListTablesCommand,
-} = require("@aws-sdk/client-dynamodb");
+
 const PORT = process.env.PORT || 3000;
 
 var cors = require("cors");
@@ -16,22 +13,13 @@ app.get("/", function (req, res) {
   res.sendFile("/index.html");
 });
 
-app.post("/log", function (req, res) {
-  const data = req.body
-  console.log(`storing ${data} in DynamoDB`)
-  if (data){
-    // (async () => {
-    //   const client = new DynamoDBClient({ region: "us-west-2" });
-    //   const command = new ListTablesCommand({});
-    //   try {
-    //     const results = await client.send(command);
-    //     console.log(results.TableNames.join("\n"));
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // })();
-  }
+app.post("/analytic", function (req, res) {
+  const data = JSON.stringify(req.body);
+  console.log(`storing ${data} in DynamoDB`);
+  if (data) {
   
+  }
+
   res.end();
 });
 
