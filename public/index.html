@@ -181,6 +181,8 @@
         const remoteIP = window.hostInfo?.ipAddress || "unknown";
         const referrer = document.referrer || window.location.href;
         const currentURI = window.location.href;
+        element = element?.innerHTML;
+
         window.analyticsData = {
           element,
           remoteIP,
@@ -192,19 +194,21 @@
         if (document.visibilityState === "hidden") {
           if (window.cron) pauseTimer();
           const elapsedTime = window.cron
-            ? `${printTime(window.timerHour, "h")}
-             ${printTime(window.timerMinute, "min")}
-             ${printTime(window.timerSecond, "s")}
-             ${printTime(window.timerMillisecond, "ms")}`
+            ? `${printTime(window.timerHour, "h")} ${printTime(
+                window.timerMinute,
+                "min"
+              )} ${printTime(window.timerSecond, "s")} ${printTime(
+                window.timerMillisecond,
+                "ms"
+              )}`
             : "timer didn't start";
-          sendAnalyticsData(elapsedTime, window.analyticsData);
+          sendAnalyticsData(elapsedTime.trim(), window.analyticsData);
         }
       });
 
       window.addEventListener("DOMContentLoaded", async (event) => {
         startTimer();
-        const elementSelector = ".job_details";
-        recordImpression(document.getElementById(elementSelector));
+        recordImpression(document.querySelector(".job_details"));
       });
     </script>
   </footer>

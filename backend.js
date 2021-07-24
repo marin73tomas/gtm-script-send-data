@@ -13,7 +13,9 @@ app.get("/", function (req, res) {
 });
 
 app.post("/log", function (req, res) {
-  console.log(req.body.name);
+  const data = req.body
+  if (data)
+  
   res.end();
 });
 
