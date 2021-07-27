@@ -1,17 +1,24 @@
-<script type="text/javascript" src="/external.js"></script>
+
 <script type="text/javascript">
   var hostInfo;
   var analyticData;
   var startTime;
+  var visitorId;
   function getIP(json) {
     hostInfo = { event: "ipEvent", ipAddress: json.ip };
   }
 </script>
 
+<script type="text/javascript" src="/external.js"></script>
 <script
   type="application/javascript"
   src="https://api.ipify.org?format=jsonp&callback=getIP"
 ></script>
+<script
+  src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"
+>
+initFingerprintJS()
+</script>
 
 <script type="text/javascript">
   function recordImpression(element) {
@@ -25,10 +32,11 @@
 
     // fill analytics data
     analyticData = {
-      element: element,
+      element: element.toString(),
       remoteIP: remoteIP,
       referrer: referrer,
       currentURI: currentURI,
+      visitorId: visitorId
     };
     console.log(analyticData);
   }
@@ -57,6 +65,6 @@
 
   ready(function () {
     startTime = Date.now();
-    recordImpression(document.querySelector(".job_details .actions a"));
+    recordImpression(document.querySelector("html"));
   });
 </script>
