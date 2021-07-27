@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/marin73tomas/gtm-script-send-data#readme",
   "dependencies": {
-     "aws-sdk": "^2.614.0",
+    "aws-sdk": "^2.614.0",
+    "axios": "^0.21.1",
     "claudia-api-builder": "^4.1.2",
-    "referral-parser": "0.0.9",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "referral-parser": "0.0.9"
   }
 }
